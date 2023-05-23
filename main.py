@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from psycopg_pool import AsyncConnectionPool
 import uvicorn
 
