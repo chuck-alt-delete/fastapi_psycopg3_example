@@ -7,7 +7,7 @@ path_to_env = Path(__file__).parent.absolute() / ".env"
 config = dotenv_values(path_to_env)
 
 # Set Materialize cluster name
-CLUSTER = "demo_processing"
+CLUSTER = config["CLUSTER"] if config["CLUSTER"] else "default"
 
 # Create Data Source Name (DSN) string
 MY_DSN_STRING = f'user={config["MZ_USER"]} password={config["MZ_PASSWORD"]} host={config["MZ_HOST"]} port={config["MZ_PORT"]} dbname={config["MZ_DB"]} sslmode=require'
