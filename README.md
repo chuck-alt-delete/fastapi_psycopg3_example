@@ -23,4 +23,4 @@
     ```json
     {"data":[{"a":0,"b":0},{"a":0,"b":1},{"a":1,"b":0},{"a":1,"b":1},{"a":2,"b":0}]}
     ```
-    This assumes you have a Postgres compatible database with a collection called `my_collection` with integer columns `a` and `b`. In my case, I use Materialize with a processing cluster called `demo_processing`.
+    This assumes you have a Postgres compatible database with a collection called `my_collection` with integer columns `a` and `b`.
