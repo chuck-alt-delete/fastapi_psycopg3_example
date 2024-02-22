@@ -6,15 +6,17 @@ path_to_env = Path(__file__).parent.absolute() / ".env"
 # See example.env for what variables you need to define.
 config = dotenv_values(path_to_env)
 
-# Set Materialize cluster name
-CLUSTER = config["CLUSTER"] if config["CLUSTER"] else "default"
+config["options"] = ''
+if config["MZ_CLUSTER"]:
+    config["options"] += f'--cluster={config["MZ_CLUSTER"]}'
+else:
+    config["options"] += '--cluster=quickstart'
 
-# Replace the @ symbol of your Materialize user email with %40 for the postgres connection string
-config["MZ_USER"] = config["MZ_USER"].replace('@','%40')
+if config["MZ_TRANSACTION_ISOLATION_SERIALIZABLE"]:
+    config["options"] += ' -c transaction_isolation=serializable'
 
-# Create Data Source Name (DSN) string, including Materialize cluster the query will run on
-MY_DSN_STRING = f'''postgresql://{config["MZ_USER"]}:{config["MZ_PASSWORD"]}@{config["MZ_HOST"]}:{config["MZ_PORT"]}/{config["MZ_DB"]}?options=--cluster%3D{CLUSTER}&sslmode=require'''
+if config["MZ_SCHEMA"]:
+    config["options"] += f' -c search_path={config["MZ_SCHEMA"]}'
 
 if __name__=="__main__":
     print(config)
-    print(MY_DSN_STRING)
