@@ -12,8 +12,8 @@ if config["MZ_CLUSTER"]:
 else:
     config["options"] += '--cluster=quickstart'
 
-if config["MZ_TRANSACTION_ISOLATION_SERIALIZABLE"]:
-    config["options"] += ' -c transaction_isolation=serializable'
+if config["MZ_TRANSACTION_ISOLATION"]:
+    config["options"] += f' -c transaction_isolation={"MZ_TRANSACTION_ISOLATION"}'
 
 if config["MZ_SCHEMA"]:
     config["options"] += f' -c search_path={config["MZ_SCHEMA"]}'
