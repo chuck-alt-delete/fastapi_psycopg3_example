@@ -2,7 +2,17 @@
 
 1. Inspect the code.
 
-1. Fill out your database connection details as environment variables in a file called `.env`
+1. Fill out your database connection details as environment variables in a file called `.env`. Here is an example:
+    ```
+    export MZ_HOST=<id>.<region>.aws.materialize.cloud
+    export MZ_USER=chuck@materialize.com
+    export MZ_PASSWORD=<app password>
+    export MZ_PORT=6875
+    export MZ_DB=materialize
+    export MZ_CLUSTER=chuck
+    export MZ_SCHEMA=public
+    export MZ_TRANSACTION_ISOLATION=serializable
+    ```
 
 1. Install dependencies.
     ```bash
